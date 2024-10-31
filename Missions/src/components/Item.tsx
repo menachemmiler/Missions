@@ -27,25 +27,24 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
       alert(`${misson._id} deleted`)
     }
   };
-
-  // const updatePriority = async () => {
-  //   const resulte: Response = await fetch(
-  //     `https://reactexambackend.onrender.com/missions/8820980/${_id}`,
-  //     {
-  //       method: "DELETE",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       }
-  //     }
-  //   );
-  //   if (!resulte.ok) {
-  //     console.log(resulte);
-  //   } else {
-  //     setNewM(!newM);
-  //     alert(`${misson._id} deleted`)
-  //   }
-  // };
+  const updatePriority = async () => {
+    const resulte: Response = await fetch(
+      `https://reactexambackend.onrender.com/missions/8820980/progress/${_id}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      }
+    );
+    if (!resulte.ok) {
+      console.log(resulte);
+    } else {
+      setNewM(!newM);
+      alert(`${misson._id} updated`)
+    }
+  };
   return (
     <div className="item">
       <div>
@@ -55,7 +54,7 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
         <h5>description: {description}</h5>
       </div>
       <div>
-        <button>priority</button>
+        <button onClick={() => {updatePriority()}}>priority</button>
       </div>
       <div>
         <button onClick={() => {deleteMisison()}}>delete</button>
