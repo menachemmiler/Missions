@@ -77,4 +77,5 @@
   height: 2000px;
   background-color: #0f0aa99f;
   display: flex;
+  align-items: center;
 }
