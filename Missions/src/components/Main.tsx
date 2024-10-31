@@ -4,13 +4,15 @@ import Item from "./Item";
 
 interface Props {
   missons: Mission[];
+  setNewM: (bool: boolean) => void;
+  newM: boolean;
 }
 
-const Main = ({ missons }: Props): React.JSX.Element => {
+const Main = ({ missons, newM, setNewM }: Props): React.JSX.Element => {
   return (
     <div className="main">
       {missons.map((m) => (
-        <Item misson={m} />
+        <Item misson={m} setNewM={setNewM} newM={newM} />
       ))}
     </div>
   );

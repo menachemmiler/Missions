@@ -39,7 +39,7 @@ function App() {
       <div className="title" style={{ color: "red" }}>
         Missions
       </div>
-      <Main missons={missons} />
+      <Main missons={missons} setNewM={setNewM} newM={newM} />
     </div>
   );
 }

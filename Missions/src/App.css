@@ -58,7 +58,8 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  
+  align-items: center;
+  gap: 1%;
 }
 
 .red{
@@ -71,19 +72,9 @@
   padding: 1em;
 }
 
-/* 
-.add {
-  margin-bottom: 1.5em;
+.item{
+  width: 100%;
+  height: 2000px;
+  background-color: #0f0aa99f;
+  display: flex;
 }
-
-.list {
-}
-
-.robonto_font {
-  font-family: "Roboto Flex", sans-serif;
-  font-optical-sizing: auto;
-  /* font-weight: <weight>; */
-  font-style: normal;
-  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "XOPQ" 96, "XTRA" 468,
-    "YOPQ" 79, "YTAS" 750, "YTDE" -203, "YTFI" 738, "YTLC" 514, "YTUC" 712;
-} */
