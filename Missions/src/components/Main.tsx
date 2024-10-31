@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Mission from "../types/Mission";
 import Item from "./Item";
 
@@ -12,7 +11,7 @@ const Main = ({ missons, newM, setNewM }: Props): React.JSX.Element => {
   return (
     <div className="main">
       {missons.map((m) => (
-        <Item misson={m} setNewM={setNewM} newM={newM} />
+        <Item misson={m} setNewM={setNewM} newM={newM} key={m._id} />
       ))}
     </div>
   );

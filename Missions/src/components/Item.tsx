@@ -17,14 +17,14 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-        }
+        },
       }
     );
     if (!resulte.ok) {
       console.log(resulte);
     } else {
       setNewM(!newM);
-      alert(`${misson._id} deleted`)
+      alert(`${misson._id} deleted`);
     }
   };
   const updatePriority = async () => {
@@ -35,18 +35,25 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-        }
+        },
       }
     );
     if (!resulte.ok) {
       console.log(resulte);
     } else {
       setNewM(!newM);
-      alert(`${misson._id} updated`)
+      alert(`${misson._id} updated`);
     }
   };
+
+  let className =
+    status == "Pending"
+      ? "b-red"
+      : status == "In Progress"
+      ? "b-orange" 
+      : "b-green";
   return (
-    <div className="item">
+    <div className={`item ${className}`}>
       <div>
         <h3>name: {name}</h3>
         <h5>status: {status}</h5>
@@ -54,10 +61,22 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
         <h5>description: {description}</h5>
       </div>
       <div>
-        <button onClick={() => {updatePriority()}}>priority</button>
+        <button
+          onClick={() => {
+            updatePriority();
+          }}
+        >
+          priority
+        </button>
       </div>
       <div>
-        <button onClick={() => {deleteMisison()}}>delete</button>
+        <button
+          onClick={() => {
+            deleteMisison();
+          }}
+        >
+          delete
+        </button>
       </div>
     </div>
   );

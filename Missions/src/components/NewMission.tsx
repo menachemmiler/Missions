@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Mission from "../types/Mission";
 
 interface Props {
   setNewM: (bool: boolean) => void;
@@ -7,34 +6,33 @@ interface Props {
 }
 
 const NewMission = ({ newM, setNewM }: Props) => {
-  const [error, setError] = useState<any>(null);
   const [name, setName] = useState("");
   const [status, setStatus] = useState("Pending");
   const [priority, setPriority] = useState("Low");
   const [description, setDescription] = useState("");
 
   const createMission = async () => {
-    const resulte: Response = await fetch(
-      "https://reactexambackend.onrender.com/missions/8820980",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          status: status,
-          priority: priority,
-          description: description,
-        }),
-      }
-    );
-    if (!resulte.ok) {
-      setError("Error adding mission");
-      console.log(resulte);
-    } else {
+    try {
+      const resulte: Response = await fetch(
+        "https://reactexambackend.onrender.com/missions/8820980",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name,
+            status: status,
+            priority: priority,
+            description: description,
+          }),
+        }
+      );
+      if (!resulte.ok) throw new Error("eror to create mission!");
       setNewM(!newM);
+    } catch (err: any) {
+      console.log(err.message);
     }
   };
 
@@ -57,7 +55,7 @@ const NewMission = ({ newM, setNewM }: Props) => {
         <option id="Pending" value="Pending">
           Pending
         </option>
-        <option id="Progress" value="Progress">
+        <option id="Progress" value="In Progress">
           Progress
         </option>
         <option id="Completed" value="Completed">
@@ -89,7 +87,7 @@ const NewMission = ({ newM, setNewM }: Props) => {
         value={description}
       />
       <button
-        className="red"
+        className="b-red"
         onClick={() => {
           createMission();
         }}

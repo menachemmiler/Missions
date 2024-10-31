@@ -10,21 +10,21 @@ function App() {
   const [newM, setNewM] = useState<boolean>(false);
 
   const getData = async (id: string = "") => {
-    let url = `${baseUrl}`;
-    if (id !== "") {
-      url += `/${id}`;
+    try {
+      let url = `${baseUrl}`;
+      if (id !== "") {
+        url += `/${id}`;
+      }
+      const res = await fetch(url);
+      const json = await res.json();
+      if (res.ok) {
+        setMissions(json as Mission[]);
+      }
+      console.log({ json });
+    } catch (err: any) {
+      console.log(err.message);
     }
-    const res = await fetch(url);
-    const json = await res.json();
-    if (res.ok) {
-      setMissions(json as Mission[]);
-    }
-    console.log({ json });
   };
-
-  // useEffect(() => {
-  //   console.log(missons);
-  // }, [missons]); //מתבצע בטעינה הראשונית של הדף
 
   useEffect(() => {
     getData();
