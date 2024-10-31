@@ -10,19 +10,67 @@
 }
 
 .app {
-  background-color: #ae2222;
+  background-color: aliceblue;
   height: 100%;
   width: 100%;
-  padding-top: 1%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  div{
+    width: 98%;
+    text-align: center;
+  }
 }
 
-/* .card {
-  background-color: #e4e4e4;
+.green{
+  color: green;
+}
+
+.title{
+  font-size:xx-large;
+  padding: 1%;
+}
+
+
+.newMission{
+  width: 55%;
+  height: 40%;
+  background-color: #355e34;
+  /* box-shadow: 1px 1px 1px black; */
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  flex-direction: column;
+  gap: 2%;
+  select, input{
+    width: 90%;
+    height: 8%;
+    border-radius: 15px;
+  }
+}
+
+
+.main{
+  height: 45%;
+  width: 98%;
+  border: rgb(5, 37, 1) solid 1px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.red{
+  background-color: rgb(206, 69, 69);
+}
+
+.mission {
+  background-color: #da0d95;
   border-radius: 10px;
   padding: 1em;
 }
 
+/* 
 .add {
   margin-bottom: 1.5em;
 }
