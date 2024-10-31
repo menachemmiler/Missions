@@ -1,3 +1,4 @@
+import { deleteMisison } from "../services/MissionService";
 import Mission from "../types/Mission";
 
 interface Props {
@@ -9,24 +10,6 @@ interface Props {
 const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
   const { description, name, priority, status, _id } = misson;
 
-  const deleteMisison = async () => {
-    const resulte: Response = await fetch(
-      `https://reactexambackend.onrender.com/missions/8820980/${_id}`,
-      {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (!resulte.ok) {
-      console.log(resulte);
-    } else {
-      setNewM(!newM);
-      alert(`${misson._id} deleted`);
-    }
-  };
   const updatePriority = async () => {
     const resulte: Response = await fetch(
       `https://reactexambackend.onrender.com/missions/8820980/progress/${_id}`,
@@ -50,7 +33,7 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
     status == "Pending"
       ? "b-red"
       : status == "In Progress"
-      ? "b-orange" 
+      ? "b-orange"
       : "b-green";
   return (
     <div className={`item ${className}`}>
@@ -71,8 +54,10 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
       </div>
       <div>
         <button
-          onClick={() => {
-            deleteMisison();
+          onClick={async () => {
+            const res = await deleteMisison(_id!);
+            if (!res) return;
+            setNewM(!newM);
           }}
         >
           delete

@@ -48,3 +48,22 @@ export const createMission = async (
     return 0;
   }
 };
+
+export const deleteMisison = async (
+  _id: string
+): Promise<boolean> => {
+  try {
+    const resulte: Response = await fetch(`${baseUrl}/${_id}`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!resulte.ok) throw new Error("no deleted!");
+    return true;
+  } catch (err: any) {
+    console.log(err.message);
+    return false;
+  }
+};
