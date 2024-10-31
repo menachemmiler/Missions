@@ -30,9 +30,12 @@ const NewMission = ({ newM, setNewM }: Props) => {
         }),
       }
     );
-    if (!resulte.ok) setError("Error adding mission");
-
-    setNewM(!newM);
+    if (!resulte.ok) {
+      setError("Error adding mission");
+      console.log(resulte);
+    } else {
+      setNewM(!newM);
+    }
   };
 
   return (
