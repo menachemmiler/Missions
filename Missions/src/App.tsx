@@ -3,33 +3,20 @@ import "./App.css";
 import Mission from "./types/Mission";
 import NewMission from "./components/NewMission";
 import Main from "./components/Main";
+import { getMission } from "./services/MissionService";
 
 function App() {
-  const baseUrl = "https://reactexambackend.onrender.com/missions/8820980";
   const [missons, setMissions] = useState<Mission[]>([] as Mission[]);
   const [newM, setNewM] = useState<boolean>(false);
 
-  const getData = async (id: string = "") => {
-    try {
-      let url = `${baseUrl}`;
-      if (id !== "") {
-        url += `/${id}`;
-      }
-      const res = await fetch(url);
-      const json = await res.json();
-      if (res.ok) {
-        setMissions(json as Mission[]);
-      }
-      console.log({ json });
-    } catch (err: any) {
-      console.log(err.message);
-    }
-  };
-
   useEffect(() => {
-    getData();
+    const filingMissions = async () => {
+      const res = await getMission();
+      if (!res) return;
+      setMissions(res as Mission[]);
+    };
+    filingMissions();
     console.log(missons);
-    console.log("2");
   }, [newM]); //מתבצע בכל שינוי ברשימת המשימות
 
   return (

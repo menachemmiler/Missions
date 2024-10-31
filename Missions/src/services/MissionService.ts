@@ -17,6 +17,7 @@ export const getMission = async (
     }
     console.log({ json });
   } catch (err: any) {
-    throw err;
+    console.log(err.message);
+    return 0;
   }
 };
