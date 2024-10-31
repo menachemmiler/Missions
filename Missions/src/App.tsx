@@ -41,7 +41,7 @@ function App() {
       </div>
       <Main missons={missons} setNewM={setNewM} newM={newM} />
     </div>
-  );
+  );  
 }
 
 export default App;
