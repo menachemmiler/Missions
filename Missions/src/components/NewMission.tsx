@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createMission } from "../services/MissionService";
 
 interface Props {
   setNewM: (bool: boolean) => void;
@@ -10,31 +11,6 @@ const NewMission = ({ newM, setNewM }: Props) => {
   const [status, setStatus] = useState("Pending");
   const [priority, setPriority] = useState("Low");
   const [description, setDescription] = useState("");
-
-  const createMission = async () => {
-    try {
-      const resulte: Response = await fetch(
-        "https://reactexambackend.onrender.com/missions/8820980",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name,
-            status: status,
-            priority: priority,
-            description: description,
-          }),
-        }
-      );
-      if (!resulte.ok) throw new Error("eror to create mission!");
-      setNewM(!newM);
-    } catch (err: any) {
-      console.log(err.message);
-    }
-  };
 
   return (
     <div className="newMission">
@@ -88,8 +64,16 @@ const NewMission = ({ newM, setNewM }: Props) => {
       />
       <button
         className="b-red"
-        onClick={() => {
-          createMission();
+        onClick={async () => {
+          const res = await createMission({
+            description,
+            name,
+            priority,
+            status,
+          });
+          if (!res) return;
+          // console.log(res);
+          setNewM(!newM);
         }}
       >
         Add Mission
