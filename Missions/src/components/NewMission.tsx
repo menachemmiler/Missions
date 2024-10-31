@@ -96,7 +96,6 @@ const NewMission = ({ newM, setNewM }: Props) => {
       >
         Add Mission
       </button>
-      {error && <p>{error}</p>}
     </div>
   );
 };
