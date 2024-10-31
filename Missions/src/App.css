@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  background-color: #ae2222;
+  height: 100%;
+  width: 100%;
+  padding-top: 1%;
+  display: flex;
+}
+
+/* .card {
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.add {
+  margin-bottom: 1.5em;
+}
+
+.list {
+}
+
+.robonto_font {
+  font-family: "Roboto Flex", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "XOPQ" 96, "XTRA" 468,
+    "YOPQ" 79, "YTAS" 750, "YTDE" -203, "YTFI" 738, "YTLC" 514, "YTUC" 712;
+} */
