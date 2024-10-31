@@ -1,4 +1,4 @@
-import { deleteMisison } from "../services/MissionService";
+import { deleteMisison, missionProgress } from "../services/MissionService";
 import Mission from "../types/Mission";
 
 interface Props {
@@ -9,25 +9,6 @@ interface Props {
 
 const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
   const { description, name, priority, status, _id } = misson;
-
-  const updatePriority = async () => {
-    const resulte: Response = await fetch(
-      `https://reactexambackend.onrender.com/missions/8820980/progress/${_id}`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (!resulte.ok) {
-      console.log(resulte);
-    } else {
-      setNewM(!newM);
-      alert(`${misson._id} updated`);
-    }
-  };
 
   let className =
     status == "Pending"
@@ -45,11 +26,13 @@ const Item = ({ misson, newM, setNewM }: Props): React.JSX.Element => {
       </div>
       <div>
         <button
-          onClick={() => {
-            updatePriority();
+          onClick={async () => {
+            const res = await missionProgress(_id!);
+            if (!res) return;
+            setNewM(!newM);
           }}
         >
-          priority
+          Progress
         </button>
       </div>
       <div>
